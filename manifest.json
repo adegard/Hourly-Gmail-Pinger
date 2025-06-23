@@ -8,20 +8,21 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  "action": {
-    "default_icon": {
-      "16": "icons/default.png"
-    },
-    "default_title": "Gmail Pinger"
-  },
-  "icons": {
-    "16": "icons/default.png"
-  },
+	"action": {
+	  "default_icon": {
+		"16": "icons/default.png"
+	  },
+	  "default_title": "Gmail Pinger"
+	},
+	"icons": {
+	  "16": "icons/default.png"
+	},
+  "options_page": "options.html",
   "content_scripts": [
-  {
-    "matches": ["https://mail.google.com/mail/feed/atom"],
-    "js": ["content.js"],
-    "run_at": "document_end"
-  }
+    {
+      "matches": ["https://mail.google.com/mail/feed/atom"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
   ]
 }

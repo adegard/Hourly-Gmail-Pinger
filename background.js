@@ -1,9 +1,17 @@
 const ICON_DEFAULT = "icons/default.png";
 const ICON_ALERT = "icons/alert.png";
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.alarms.create("checkGmail", { delayInMinutes: 0, periodInMinutes: 30 });
-});
+async function setupAlarmFromStorage() {
+  const { interval } = await chrome.storage.local.get("interval");
+  const delay = interval ?? 60;
+  chrome.alarms.create("checkGmail", {
+    delayInMinutes: delay,
+    periodInMinutes: delay
+  });
+}
+
+chrome.runtime.onInstalled.addListener(setupAlarmFromStorage);
+chrome.runtime.onStartup.addListener(setupAlarmFromStorage);
 
 chrome.alarms.onAlarm.addListener(() => {
   chrome.tabs.create({ url: "https://mail.google.com/mail/feed/atom", active: false }, (tab) => {
@@ -26,9 +34,17 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
       chrome.tabs.remove(sender.tab.id);
     }
   }
+
+  if (msg.type === "update-alarm") {
+    chrome.alarms.clear("checkGmail", () => {
+      chrome.alarms.create("checkGmail", {
+        delayInMinutes: msg.interval,
+        periodInMinutes: msg.interval
+      });
+    });
+  }
 });
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({ url: "https://mail.google.com" });
 });
-
