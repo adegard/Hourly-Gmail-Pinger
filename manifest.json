@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Hourly Gmail Pinger",
+  "version": "1.0",
+  "host_permissions": [
+    "https://mail.google.com/*"
+  ],
+  "permissions": ["alarms", "tabs", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/default.png"
+    },
+    "default_title": "Gmail Pinger"
+  },
+  "icons": {
+    "16": "icons/default.png"
+  }
+}
