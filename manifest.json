@@ -1,13 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Hourly Gmail Pinger",
-  "version": "1.0",
-  "host_permissions": [
-    "https://mail.google.com/*"
-  ],
-  "permissions": ["alarms", "tabs", "storage"],
+  "version": "1.3",
+  "permissions": ["alarms", "scripting", "tabs", "storage"],
+  "host_permissions": ["https://mail.google.com/mail/feed/atom"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "action": {
     "default_icon": {
@@ -17,5 +16,12 @@
   },
   "icons": {
     "16": "icons/default.png"
+  },
+  "content_scripts": [
+  {
+    "matches": ["https://mail.google.com/mail/feed/atom"],
+    "js": ["content.js"],
+    "run_at": "document_end"
   }
+  ]
 }
