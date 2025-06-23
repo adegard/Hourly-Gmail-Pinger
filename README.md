@@ -1,5 +1,4 @@
-# Focus_gmail_checker
-(Hourly Gmail Pinger)
+# Hourly Gmail Pinger
 
 **A distraction-free Chrome extension that checks for new Gmail messages only once every configurable number of minutes.**  
 Stop compulsively checking your inbox—let your email come to you on your schedule.
