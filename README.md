@@ -10,10 +10,9 @@
 ## ✨ Features
 
 - ⏰ Periodic email checking (default: every 60 minutes).
-- 🔕 Detects unread Gmail messages via the Atom feed.
+- 🔕 Detects unread Gmail messages via the Atom feed - no Gmail login to do
 - 🔔 Changes the extension icon if new mail is found.
 - 🛠️ Options page to customize the checking interval.
-- 🧘 Works silently in the background—no tab popups.
 
 ---
 
