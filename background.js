@@ -29,6 +29,17 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
     const icon = msg.count > 0 ? ICON_ALERT : ICON_DEFAULT;
     chrome.action.setIcon({ path: icon });
     chrome.storage.local.set({ unreadCount: msg.count });
+	
+	if (msg.count > 0) {
+	  chrome.notifications.create({
+		type: "basic",
+		iconUrl: "icons/alert.png",
+		title: "New Gmail!",
+		message: `You have ${msg.count} unread message${msg.count > 1 ? "s" : ""}.`,
+		silent: false // This ensures the system plays its default notification sound
+	  });
+	}
+
 
     if (sender.tab?.id) {
       chrome.tabs.remove(sender.tab.id);
