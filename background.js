@@ -47,4 +47,8 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
 
 chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({ url: "https://mail.google.com" });
+
+  // Reset icon to default when Gmail is opened manually
+  chrome.action.setIcon({ path: "icons/default.png" });
+  chrome.storage.local.set({ unreadCount: 0 });
 });
